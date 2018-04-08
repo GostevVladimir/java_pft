@@ -10,6 +10,7 @@ public class ApplicationManager {
   FirefoxDriver wd;
   private  NavigatioHelper navigatioHelper;
   private  GroupHelper groupHelper;
+  private  ContactHelper contactHelper;
   private  SessionHelper sessionHelper;
 
 
@@ -18,6 +19,7 @@ public class ApplicationManager {
     wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
     wd.get("http://localhost/addressbook/");
     groupHelper = new GroupHelper(wd);
+    contactHelper = new ContactHelper(wd);
     navigatioHelper = new NavigatioHelper(wd);
     sessionHelper = new SessionHelper(wd);
     sessionHelper.login("admin", "secret");
@@ -35,5 +37,8 @@ public class ApplicationManager {
 
   public NavigatioHelper getNavigatioHelper() {
     return navigatioHelper;
+  }
+  public ContactHelper getContactHelper(){
+    return contactHelper;
   }
 }
