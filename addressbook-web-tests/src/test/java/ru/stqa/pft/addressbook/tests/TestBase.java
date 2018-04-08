@@ -13,7 +13,7 @@ public class TestBase {
   @BeforeMethod
   public void setUp() throws Exception {
     app.init();
-    app.login("admin", "secret");
+
   }
 
   @AfterMethod
