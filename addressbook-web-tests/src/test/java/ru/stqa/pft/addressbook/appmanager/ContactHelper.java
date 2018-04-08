@@ -9,6 +9,7 @@ public class ContactHelper extends HelperBase{
     super(wd);
   }
 
+
   public void returnToHomePage() {
     click(By.linkText("home page"));
   }
@@ -29,5 +30,9 @@ public class ContactHelper extends HelperBase{
 
   public void initContactCreation() {
     click(By.linkText("add new"));
+  }
+
+  public void selectContact() {
+    click(By.name("selected[]"));
   }
 }
