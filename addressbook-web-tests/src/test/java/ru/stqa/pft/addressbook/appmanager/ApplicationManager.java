@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
   FirefoxDriver wd;
-  private  NavigatioHelper navigatioHelper;
+  private NavigatioHelper navigatioHelper;
   private  GroupHelper groupHelper;
   private  ContactHelper contactHelper;
   private  SessionHelper sessionHelper;
