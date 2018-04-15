@@ -18,6 +18,7 @@ public class ApplicationManager {
   private  ContactHelper contactHelper;
   private  SessionHelper sessionHelper;
   private String browser;
+
   public ApplicationManager(String browser) {
     this.browser = browser;
   }
