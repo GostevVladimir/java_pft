@@ -1,33 +1,14 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
-  private int id;
-  private final String firstName;
-  private final String lastName;
-  private final String address;
-  private final String homePhoneNumber;
-  private final String email;
-  private final String group;
+  private int id = Integer.MAX_VALUE;
+  private  String firstName;
+  private  String lastName;
+  private  String address;
+  private  String homePhoneNumber;
+  private  String email;
+  private  String group;
 
-  public ContactData(String firstName, String lastName, String address, String homePhoneNumber, String email, String group) {
-    this.id = Integer.MAX_VALUE;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.address = address;
-    this.homePhoneNumber = homePhoneNumber;
-    this.email = email;
-    this.group = group;
-  }
-
-  public ContactData(int id, String firstName, String lastName, String address, String homePhoneNumber, String email, String group) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.address = address;
-    this.homePhoneNumber = homePhoneNumber;
-    this.email = email;
-    this.group = group;
-  }
 
   @Override
   public boolean equals(Object o) {
@@ -60,8 +41,39 @@ public class ContactData {
     return id;
   }
 
-  public void setId(int id) {
+  public ContactData withId(int id) {
     this.id = id;
+    return this;
+  }
+
+  public ContactData withFirstName(String firstName) {
+    this.firstName = firstName;
+    return this;
+  }
+
+  public ContactData withLastName(String lastName) {
+    this.lastName = lastName;
+    return this;
+  }
+
+  public ContactData withAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  public ContactData withHomePhoneNumber(String homePhoneNumber) {
+    this.homePhoneNumber = homePhoneNumber;
+    return this;
+  }
+
+  public ContactData withEmail(String email) {
+    this.email = email;
+    return this;
+  }
+
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
   }
 
   public String getFirstName() {
