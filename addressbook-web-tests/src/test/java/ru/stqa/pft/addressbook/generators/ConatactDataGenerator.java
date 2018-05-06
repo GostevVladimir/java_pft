@@ -45,7 +45,6 @@ public class ConatactDataGenerator {
     } else{
       System.out.println("Указан неизвестный формат");
     }
-    saveAsCsv(contacts, new File(file));
   }
 
   private void saveAsXml(List<ContactData> contacts, File file) throws IOException {
