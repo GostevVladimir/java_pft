@@ -8,25 +8,5 @@
     "workPhone": "849596024240",
     "email": "test0@mail.com",
     "group": "test1"
-  },
-  {
-    "firstName": "FirstNameTest1",
-    "lastName": "LastNameTest1",
-    "address": "test address1",
-    "homePhoneNumber": "222331",
-    "mobilePhone": "88005553531",
-    "workPhone": "849596024241",
-    "email": "test1@mail.com",
-    "group": "test1"
-  },
-  {
-    "firstName": "FirstNameTest2",
-    "lastName": "LastNameTest2",
-    "address": "test address2",
-    "homePhoneNumber": "222332",
-    "mobilePhone": "88005553532",
-    "workPhone": "849596024242",
-    "email": "test2@mail.com",
-    "group": "test1"
   }
 ]
