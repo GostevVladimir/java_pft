@@ -7,6 +7,9 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
+
 @XStreamAlias("contact")
 @Entity
 @Table(name = "addressbook")
@@ -53,15 +56,20 @@ public class ContactData {
   private  String email3;
   @Transient
   private  String allEmail;
-  @Expose
+/*  @Expose
   @Transient
-  private  String group;
+  private  String group;*/
   @Transient
   private  String allPhones;
   @Column(name = "photo")
   @Expose
   @Type(type = "text")
   private  String photo;
+
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "address_in_groups", joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "group_id"))
+  private Set<GroupData> groups = new HashSet<>();
 
 
   @Override
@@ -116,10 +124,10 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withGroup(String group) {
+/*  public ContactData withGroup(String group) {
     this.group = group;
     return this;
-  }
+  }*/
 
 
   public ContactData withAllPhones(String allPhones) {
@@ -217,9 +225,10 @@ public class ContactData {
     return email;
   }
 
-  public String getGroup() {
+/*  public String getGroup() {
     return group;
-  }
+  }*/
+
   public String getMobilePhone() {
     return mobilePhone;
   }
@@ -234,5 +243,14 @@ public class ContactData {
   }
   public String getAllAddress() {
     return allAddress;
+  }
+
+  public Groups getGroups() {
+    return new Groups(groups);
+  }
+
+  public ContactData inGroup(GroupData group){
+    groups.add(group);
+    return this;
   }
 }

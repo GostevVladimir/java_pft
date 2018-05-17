@@ -7,6 +7,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.thoughtworks.xstream.XStream;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Groups;
+import ru.stqa.pft.addressbook.tests.TestBase;
 
 
 import java.io.*;
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ConatactDataGenerator {
+public class ConatactDataGenerator extends TestBase{
 
   @Parameter(names = "-c", description = "Contact count")
   public int count;
@@ -72,19 +74,20 @@ public class ConatactDataGenerator {
     try(Writer writer = new FileWriter(file)){
     for(ContactData contact : contacts){
       writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getFirstName(), contact.getLastName(), contact.getAddress(),
-              contact.getHomePhoneNumber(),contact.getMobilePhone(), contact.getPhoto(), contact.getWorkPhone(), contact.getEmail(), contact.getGroup()));
+              contact.getHomePhoneNumber(),contact.getMobilePhone(), contact.getPhoto(), contact.getWorkPhone(), contact.getEmail()/*,contact.getGroup()*/));
       }
     }
   }
 
 
   private static List<ContactData> generateContacts(int count) throws IOException {
+    Groups groups = app.db().groups();
     List<ContactData> contacts = new ArrayList<>();
     for(int i = 0; i < count; i++){
       contacts.add(new ContactData().withFirstName(String.format("FirstNameTest%s", i)).
               withLastName(String.format("LastNameTest%s", i)).withAddress(String.format("test address%s", i))
               .withHomePhoneNumber(String.format("22233%s", i)).withMobilePhone(String.format("8800555353%s", i)).withPhoto(new File("src/test/resources/stru.png")).
-              withWorkPhone(String.format("84959602424%s", i)).withEmail(String.format("test%s", i + "@mail.com")).withGroup(String.format("test1")));
+              withWorkPhone(String.format("84959602424%s", i)).withEmail(String.format("test%s", i + "@mail.com"))/*.withGroup(String.format("test1"))*/);
     }
     return contacts;
   }
