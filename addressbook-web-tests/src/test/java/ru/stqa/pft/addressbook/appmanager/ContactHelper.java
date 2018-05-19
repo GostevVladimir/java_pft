@@ -161,4 +161,16 @@ public class ContactHelper extends HelperBase{
     click(By.xpath(String.format("//select[@name='to_group']/option[text()='%s']", name)));
     click(By.name("add"));
   }
+
+  public void deleteContactInGroup(int id, String name) {
+    selectGroupByName(name);
+    selectContactById(id);
+    click(By.name("remove"));
+  }
+
+  private void selectGroupByName(String name) {
+    click(By.name("group"));
+    click(By.xpath(String.format("//select[@name='group']/option[text()='%s']", name)));
+
+  }
 }

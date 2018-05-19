@@ -6,13 +6,12 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 
-
 import java.io.File;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-public class AddContactInGroupTests extends TestBase{
+public class DeletingContactFromGroupTests extends TestBase{
   boolean ct;
   boolean gp;
   ContactData contact = new ContactData();
@@ -36,33 +35,31 @@ public class AddContactInGroupTests extends TestBase{
     }
 
     if(!(ct && gp)){
-      for(GroupData gr : app.db().groups()){
-        for (ContactData c : app.db().contacts()){
-          if(!c.getGroups().contains(gr)){
+      for (ContactData c : app.db().contacts()){
+          if(c.getGroups().size() != 0){
             contact = c;
-            group = gr;
+            group = c.getGroups().iterator().next();
             return;
           }
         }
       }
       contact = app.db().contacts().iterator().next();
-      group = new GroupData().withName(String.format("test %s", Math.random()));
-      app.goTo().groupPage();
-      app.group().create(group);
+      group = app.db().groups().iterator().next();
+      //group = new GroupData().withName(String.format("test %s", Math.random()));
+      app.goTo().homePage();
+      app.contact().addContactInGroup(contact.getId(), group.getName());
+    }
+
+    @Test
+  public void testDeletingContactFromGroup(){
+      Contacts before = app.db().contacts();
+      ContactData delContact = contact.deleteGroup(group);
+
+      app.goTo().homePage();
+      app.contact().deleteContactInGroup(contact.getId(), group.getName());
+
+      Contacts after = app.db().contacts();
+      assertThat(after, equalTo(before.withOut(contact).withAdded(delContact)));
     }
   }
 
-
-  @Test
-  public void testAddContactInGroup(){
-    Contacts before = app.db().contacts();
-    ContactData addContact = contact.inGroup(group);
-
-    app.goTo().homePage();
-    app.contact().addContactInGroup(contact.getId(), group.getName());
-
-    Contacts after = app.db().contacts();
-    assertThat(after, equalTo(before.withOut(contact).withAdded(addContact)));
-
-  }
-}
