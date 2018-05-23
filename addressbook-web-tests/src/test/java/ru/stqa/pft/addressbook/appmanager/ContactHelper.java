@@ -173,4 +173,5 @@ public class ContactHelper extends HelperBase{
     click(By.xpath(String.format("//select[@name='group']/option[text()='%s']", name)));
 
   }
+
 }
