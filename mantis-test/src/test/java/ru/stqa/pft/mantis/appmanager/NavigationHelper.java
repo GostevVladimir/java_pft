@@ -16,12 +16,15 @@ public class NavigationHelper extends HelperBase{
     wait = new WebDriverWait(wd, 5);
   }
 
-  public void goToLoginPage(){
+  public void login(){
     wd.get ( app.getProperty("web.baseUrl") +  "/login.php" );
     wd.manage().window().maximize();
     type (By.name("username"),app.getProperty("web.adminLogin"));
     type (By.name("password"),app.getProperty("web.adminPassword"));
     wd.findElement(By.cssSelector("input[type=submit]")).click();
+  }
+  public void goToLoginPage(){
+    wd.get ( app.getProperty("web.baseUrl") +  "/login.php" );
   }
 
   public void goToHomePage() {
