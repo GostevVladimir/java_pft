@@ -22,6 +22,9 @@ public class ApplicationManager {
   private FtpHelper ftp;
   private MailHelper mailHelper;
   private JamesHelper jamesHelper;
+  private NavigationHelper navigatioтHelper;
+  private DbHalper db;
+  private PasswordHelper password;
 
 
   public ApplicationManager(String browser) {
@@ -92,4 +95,23 @@ public class ApplicationManager {
     }
     return jamesHelper;
   }
+  public NavigationHelper goTo() {
+    if (navigatioтHelper == null) {
+      navigatioтHelper = new NavigationHelper(this);
+    }
+    return navigatioтHelper;
+  }
+  public DbHalper db() {
+    if (db == null) {
+      db = new DbHalper(this);
+    }
+    return db;
+  }
+  public PasswordHelper resetUserPassword() {
+    if (password == null) {
+      password = new PasswordHelper(this);
+    }
+    return password;
+  }
+
 }
