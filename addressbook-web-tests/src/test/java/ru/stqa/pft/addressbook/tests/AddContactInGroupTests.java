@@ -14,10 +14,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 public class AddContactInGroupTests extends TestBase{
-  boolean ct;
-  boolean gp;
-  ContactData contact = new ContactData();
-  GroupData group = new GroupData();
+  private boolean ct;
+  private boolean gp;
+  private ContactData contact = new ContactData();
+  private GroupData group = new GroupData();
 
   @BeforeMethod
   public void ensurePrecondition(){
