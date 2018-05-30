@@ -48,6 +48,11 @@ public class ApplicationManager {
 
     wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     wd.get(properties.getProperty("web.baseUrl"));
+    groupHelper = new GroupHelper(wd);
+    contactHelper = new ContactHelper(wd);
+    navigatioHelper = new NavigatioHelper(wd);
+    sessionHelper = new SessionHelper(wd);
+    sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
 
   }
 
