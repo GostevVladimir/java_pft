@@ -1,7 +1,5 @@
 package ru.stqa.pft.rest.tests;
 
-
-
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import org.apache.http.client.fluent.Executor;
