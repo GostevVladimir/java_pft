@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -42,7 +43,11 @@ public class ApplicationManager {
 
     dbHalper = new DbHalper();
 
-    if("".equals(properties.getProperty("selenium.server"))) {
+    DesiredCapabilities capabilities = new DesiredCapabilities();
+    capabilities.setBrowserName(browser);
+    wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
+
+/*    if("".equals(properties.getProperty("selenium.server"))) {
       if (browser.equals(BrowserType.FIREFOX)) {
         wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
       } else if (browser.equals(BrowserType.CHROME)) {
@@ -54,7 +59,7 @@ public class ApplicationManager {
       DesiredCapabilities capabilities = new DesiredCapabilities();
       capabilities.setBrowserName(browser);
       wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
-    }
+    }*/
 
     wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     wd.get(properties.getProperty("web.baseUrl"));
