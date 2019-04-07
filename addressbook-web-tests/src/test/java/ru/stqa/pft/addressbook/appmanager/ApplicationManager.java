@@ -24,9 +24,9 @@ import java.util.concurrent.TimeUnit;
 public class ApplicationManager {
   WebDriver wd;
   private NavigatioHelper navigatioHelper;
-  private  GroupHelper groupHelper;
-  private  ContactHelper contactHelper;
-  private  SessionHelper sessionHelper;
+  private GroupHelper groupHelper;
+  private ContactHelper contactHelper;
+  private SessionHelper sessionHelper;
   private String browser;
   private Properties properties;
   private DbHalper dbHalper;
@@ -39,15 +39,16 @@ public class ApplicationManager {
 
   public void init() throws IOException {
     String target = System.getProperty("target", "local");
+    //String target = System.getProperty("target", "remote");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
     dbHalper = new DbHalper();
 
-    DesiredCapabilities capabilities = new DesiredCapabilities();
-    capabilities.setBrowserName(browser);
-    wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
+//    DesiredCapabilities capabilities = new DesiredCapabilities();
+//    capabilities.setBrowserName(browser);
+//    wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
 
-/*    if("".equals(properties.getProperty("selenium.server"))) {
+    if("".equals(properties.getProperty("selenium.server"))) {
       if (browser.equals(BrowserType.FIREFOX)) {
         wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
       } else if (browser.equals(BrowserType.CHROME)) {
@@ -59,7 +60,7 @@ public class ApplicationManager {
       DesiredCapabilities capabilities = new DesiredCapabilities();
       capabilities.setBrowserName(browser);
       wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
-    }*/
+    }
 
     wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     wd.get(properties.getProperty("web.baseUrl"));
