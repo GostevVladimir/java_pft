@@ -44,10 +44,6 @@ public class ApplicationManager {
 
     dbHalper = new DbHalper();
 
-//    DesiredCapabilities capabilities = new DesiredCapabilities();
-//    capabilities.setBrowserName(browser);
-//    wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
-
     if("".equals(properties.getProperty("selenium.server"))) {
       if (browser.equals(BrowserType.FIREFOX)) {
         wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
