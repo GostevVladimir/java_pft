@@ -31,6 +31,8 @@ public class ApplicationManager {
   private String browser;
   private Properties properties;
   private DbHalper dbHalper;
+  private GoogleMainPage googleMainPage;
+  private WikipediaPage wikipediaPage;
 
 
   public ApplicationManager(String browser) {
@@ -43,7 +45,7 @@ public class ApplicationManager {
     //String target = System.getProperty("target", "remote");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
-    dbHalper = new DbHalper();
+//    dbHalper = new DbHalper();
 
     if("".equals(properties.getProperty("selenium.server"))) {
       if (browser.equals(BrowserType.FIREFOX)) {
@@ -65,8 +67,10 @@ public class ApplicationManager {
     groupHelper = new GroupHelper(wd);
     contactHelper = new ContactHelper(wd);
     navigatioHelper = new NavigatioHelper(wd);
+    googleMainPage = new GoogleMainPage(wd);
     sessionHelper = new SessionHelper(wd);
-    sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
+    wikipediaPage = new WikipediaPage(wd);
+//    sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
 
   }
 
@@ -88,6 +92,13 @@ public class ApplicationManager {
   }
   public DbHalper db(){
     return dbHalper;
+  }
+
+  public GoogleMainPage getGoogleMainPage() {
+    return googleMainPage;
+  }
+  public WikipediaPage getWikipediaPage() {
+    return wikipediaPage;
   }
 
 }

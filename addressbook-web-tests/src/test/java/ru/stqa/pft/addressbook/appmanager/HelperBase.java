@@ -6,6 +6,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class HelperBase {
   protected WebDriver wd;
@@ -50,5 +51,13 @@ public class HelperBase {
     } catch (NoSuchElementException ex){
       return false;
     }
+  }
+
+  protected void switchDriverToSecondTabOfBrowser() {
+    ArrayList<String> windows = new ArrayList<>(wd.getWindowHandles());
+    windows.forEach(s -> System.out.println());
+    String secondTabName = new ArrayList<>(wd.getWindowHandles()).get(1);
+    wd.switchTo().window(secondTabName);
+    System.setProperty("current.window.handle", secondTabName);
   }
 }
