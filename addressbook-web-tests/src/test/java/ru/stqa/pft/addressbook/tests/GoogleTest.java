@@ -6,7 +6,7 @@ public class GoogleTest extends TestBase {
 
   @Test
   public void testFirst(){
-    app.getGoogleMainPage().search("Пенза");
+//    app.getGoogleMainPage().search("Пенза");
     app.getGoogleMainPage().openFirstLink();
     app.getWikipediaPage().verifyTitle("Пенза");
   }

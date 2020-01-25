@@ -17,7 +17,7 @@ public class WikipediaPage extends HelperBase {
   private WebElement titleName;
 
   public void verifyTitle(String expectedTitle){
-    switchDriverToSecondTabOfBrowser();
+//    switchDriverToSecondTabOfBrowser();
     Assert.assertTrue(titleName.getText().equals(expectedTitle));
   }
 }
